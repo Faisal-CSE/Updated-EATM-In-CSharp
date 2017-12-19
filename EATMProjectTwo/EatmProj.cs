@@ -8,16 +8,15 @@ namespace EATMProjectTwo
 {
     class EatmProj
     {
-        readonly int[] cardNumbers = new int[] { 1, 2, 3 };
-        readonly int[] pinNumbers = new int[] { 123, 234, 456 };
+        private int[] cardNumbers = new int[] { 1, 2, 3 };
+        private int[] pinNumbers = new int[] { 123, 234, 456 };
         private int[] balances = new int[] { 500, 200, 800 };
+
         private int cardInput;
         private int pinNumber;
         private int _withdrow;
         private int _trantransactionCount = 1;
-
-        private bool flag = true;
-
+        private bool _flag = true;
 
         public void EatmMachine()
         {
@@ -26,8 +25,6 @@ namespace EATMProjectTwo
             cardInput = Convert.ToInt32(Console.ReadLine());
 
             CheckCardNumber(cardInput);
-
-
         }
 
         public void CheckCardNumber(int cardNo)
@@ -59,26 +56,28 @@ namespace EATMProjectTwo
         {
             if (pinNum == id[index])
             {
-                Console.WriteLine("1.Check account balance \t 2.Cash withdrawal \t 3.Exit");
-
+                PrintOptions();
                 MenuOptions(balances,index);
             }
             else if (pinNum == id[index])
             {
-                Console.WriteLine("1.Check account balance \t 2.Cash withdrawal \t 3.Exit");
-
+                PrintOptions();
                 MenuOptions(balances, index);
             }
             else if (pinNum == id[index])
             {
-                Console.WriteLine("1.Check account balance \t 2.Cash withdrawal \t 3.Exit");
-
+                PrintOptions();
                 MenuOptions(balances, index);
             }
             else
             {
                 Console.WriteLine("Invalid Pin number ");
             }
+        }
+
+        public void PrintOptions()
+        {
+            Console.WriteLine("1.Check account balance \t 2.Cash withdrawal \t 3.Exit");
         }
 
         public void MenuOptions(int[] id,int index)
@@ -100,7 +99,9 @@ namespace EATMProjectTwo
                         if (_trantransactionCount > 3)
                         {
                             Console.WriteLine("Total transactions limit is 3 per day.");
-                            flag = false;
+                            Console.WriteLine("Automatically logged out.");
+                            _flag = false;
+                            break;
                         }
                         else
                         {
@@ -115,13 +116,13 @@ namespace EATMProjectTwo
                 }
                 else if (getOption == 3)
                 {
-                    flag = false;
+                    _flag = false;
                 }
                 else
                 {
                     Console.WriteLine("You enter invalid option number ! Enter valid option");
                 }
-            } while (flag);
+            } while (_flag);
 
         }
 
